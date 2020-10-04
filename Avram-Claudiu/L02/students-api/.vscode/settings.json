@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d2899836-d7cf-4518-b1f4-bef81194b67f/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/claudiuavram-datc-l02",
+    "appService.deploySubpath": "publish"
+}
