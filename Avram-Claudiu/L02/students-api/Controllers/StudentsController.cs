@@ -9,40 +9,55 @@ using Microsoft.Extensions.Logging;
 
 namespace students_api.Controllers
 {
+    
     [ApiController]
     [Route("[controller]")]
-
     
 
     public class StudentsController : ControllerBase
     {
-            private readonly StudentRepo _context;
-            
-        private readonly ILogger<StudentsController> _logger;
+        
+        StudentsRepo students = new StudentsRepo();
+     
+        [HttpGet("{numar_matricol}")]
 
-        public StudentsController(ILogger<StudentsController> logger)
+        public Student GetStudents(int numar_matricol)
         {
-            _logger = logger;
+            foreach (Student itr in students.myStudents) 
+            {
+                if (itr.numar_matricol == numar_matricol)
+                    return itr;
+            }
+
+            return null;
         }
 
-// POST: Students
+        [HttpPut] 
 
+        public Student UpdateStudent([FromBody] Student student)
+        {
+            foreach (Student itr in students.myStudents) 
+            {
+                if (itr.numar_matricol == student.numar_matricol) 
+                {
+                    itr.nume = student.nume;
+                    itr.prenume = student.prenume;
+                    itr.facultate = student.facultate;
+                    itr.specializare = student.specializare;
+                    return itr;
+                }
+            }
+            return null;
+        }
         [HttpPost]
-        public async Task<ActionResult<Student>> PostTodoItem(Student student)
-        {
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-            return CreatedAtAction(nameof(Student),
-             new { 
-                nr_matricol = student.numar_matricol ,
-                num = student.nume,
-                prenum= student.prenume,
-                fac=student.facultate,
-                specializ=student.specializare,
-                medie=student.medie_admitere }, student);
+        public List<Student> InsertStudent([FromBody] Student student)
+        {
+            students.myStudents.Add(student);
+            return students.myStudents;
         }
+
+
        
        
     }
