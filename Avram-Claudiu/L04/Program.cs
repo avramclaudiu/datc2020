@@ -23,7 +23,7 @@ namespace L04
         static async Task Initialize()
         {
             string storageConnectionString = "DefaultEndpointsProtocol=https;"
-            + "AccountName=datc2020avramclaudiu;"
+            + "AccountName=flaviusciurciundatc2020;"
            +" AccountKey=YSr9Op7+2uMGLFlfN5stXGGCEaFPO9+qgOR37W5JuvHrrxP4F1YqPLrO57ERR7cdOBhvivqEl4GaKgsrA8bgWg==;"
            +" EndpointSuffix=core.windows.net;";
 
